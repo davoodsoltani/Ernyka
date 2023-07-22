@@ -1,14 +1,12 @@
+import 'package:ernyka/config/routes/routes.dart';
 import 'package:ernyka/config/theme/theme.dart';
+import 'package:ernyka/config/theme/theme_manager.dart';
 import 'package:ernyka/features/presentation/bloc/remote/remote_ip_bloc.dart';
-import 'package:ernyka/features/presentation/bloc/remote/remote_ip_event.dart';
+import 'package:ernyka/features/presentation/widgets/widgets.dart';
 import 'package:ernyka/inhection_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-
-import 'config/routes/routes.dart';
-import 'config/theme/theme_manager.dart';
-import 'features/presentation/widgets/widgets.dart';
 
 Future<void> main() async {
   await initializeDependencies();
@@ -49,8 +47,8 @@ class _MyAppState extends State<MyApp> {
     return ChangeNotifierProvider(
       create: (_) => ThemeManager(),
       child: Consumer<ThemeManager>(
-          builder: (context, ThemeManager themeNotifier, child) {
-        return BlocProvider<RemoteIpBloc>(
+        builder: (context, ThemeManager themeNotifier, child) {
+          return BlocProvider<RemoteIpBloc>(
             create: (context) => s1<RemoteIpBloc>(),
             child: MaterialApp(
               title: 'Ernyka',
@@ -58,14 +56,16 @@ class _MyAppState extends State<MyApp> {
               onGenerateRoute: AppRoutes.onGenerateRoutes,
               debugShowCheckedModeBanner: false,
               home: const MyHomeScreen(),
-            ));
-      }),
+            ),
+          );
+        },
+      ),
     );
   }
 }
 
 class MyHomeScreen extends StatefulWidget {
-  const MyHomeScreen({Key? key}) : super(key: key);
+  const MyHomeScreen({super.key});
 
   @override
   _MyHomeScreenState createState() => _MyHomeScreenState();
@@ -81,7 +81,7 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
     );
   }
 
-  _buildAppbar() {
+  AppBar _buildAppbar() {
     return AppBar(
       title: const Text(
         "Ernyka",
@@ -90,22 +90,24 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
     );
   }
 
-  _buildBody(BuildContext context) {
+  Center _buildBody(BuildContext context) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           ElevatedButton(
-              child: const Text("my ip"),
-              onPressed: () {
-                Navigator.pushNamed(context, '/MyIp');
-              }),
+            child: const Text("my ip"),
+            onPressed: () {
+              Navigator.pushNamed(context, '/MyIp');
+            },
+          ),
           addVerticalSpace(20),
           ElevatedButton(
-              child: const Text("Setting"),
-              onPressed: () {
-                Navigator.pushNamed(context, '/Setting');
-              }),
+            child: const Text("Setting"),
+            onPressed: () {
+              Navigator.pushNamed(context, '/Setting');
+            },
+          ),
         ],
       ),
     );

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class SettingPage extends StatefulWidget {
-  const SettingPage({Key? key}) : super(key: key);
+  const SettingPage({super.key});
 
   // This widget is the root of your application.
   @override
@@ -15,15 +15,16 @@ class _SettingState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
     return Consumer<ThemeManager>(
-        builder: (context, ThemeManager themeNotifier, child) {
-      return Scaffold(
-        appBar: _buildAppbar(),
-        body: _buildBody(themeNotifier),
-      );
-    });
+      builder: (context, ThemeManager themeNotifier, child) {
+        return Scaffold(
+          appBar: _buildAppbar(),
+          body: _buildBody(themeNotifier),
+        );
+      },
+    );
   }
 
-  _buildAppbar() {
+  AppBar _buildAppbar() {
     return AppBar(
       title: const Text(
         "Ernyka",
@@ -33,25 +34,28 @@ class _SettingState extends State<SettingPage> {
     );
   }
 
-  _buildBody(ThemeManager themeNotifier) {
+  Center _buildBody(ThemeManager themeNotifier) {
     return Center(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Switch(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Switch(
             value: themeNotifier.isDark,
             onChanged: (newValue) {
               themeNotifier.isDark
                   ? themeNotifier.isDark = false
                   : themeNotifier.isDark = true;
-            }),
-        addVerticalSpace(20),
-        ElevatedButton(
+            },
+          ),
+          addVerticalSpace(20),
+          ElevatedButton(
             child: const Text("back"),
             onPressed: () {
               Navigator.pop(context);
-            }),
-      ],
-    ));
+            },
+          ),
+        ],
+      ),
+    );
   }
 }

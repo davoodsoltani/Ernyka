@@ -18,7 +18,6 @@ class RemoteIpBloc extends Bloc<RemoteIpEvent, RemoteIpState> {
     if (dataState is DataSuccess) {
       emit(RemoteIpDone(dataState.data!));
     } else if (dataState is DataFailed) {
-      print(dataState.error!);
       emit(RemoteIpError(dataState.error!));
     }
   }
