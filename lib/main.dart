@@ -36,7 +36,7 @@ class _MyAppState extends State<MyApp> {
     super.initState();
   }
 
-  themeListener() {
+  void themeListener() {
     if (mounted) {
       setState(() {});
     }
