@@ -12,6 +12,7 @@ class RemoteIpBloc extends Bloc<RemoteIpEvent, RemoteIpState> {
   }
 
   Future<void> onGetIp(GetIp event, Emitter<RemoteIpState> emit) async {
+    emit(const RemoteIpLoading());
     final dataState = await _getMyIpUseCase();
 
     if (dataState is DataSuccess) {

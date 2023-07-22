@@ -1,3 +1,4 @@
+import 'package:ernyka/features/presentation/bloc/remote/remote_ip_event.dart';
 import 'package:ernyka/features/presentation/bloc/remote/remote_ip_state.dart';
 import 'package:ernyka/features/presentation/bloc/remote/remote_ip_bloc.dart';
 import 'package:ernyka/features/presentation/widgets/widgets.dart';
@@ -16,6 +17,7 @@ class _MyIpPage extends State<MyIpPage> {
   @override
   void initState() {
     super.initState();
+    BlocProvider.of<RemoteIpBloc>(context).add(const GetIp());
   }
 
   @override

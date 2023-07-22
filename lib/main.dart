@@ -51,7 +51,7 @@ class _MyAppState extends State<MyApp> {
       child: Consumer<ThemeManager>(
           builder: (context, ThemeManager themeNotifier, child) {
         return BlocProvider<RemoteIpBloc>(
-            create: (context) => s1()..add(const GetIp()),
+            create: (context) => s1<RemoteIpBloc>(),
             child: MaterialApp(
               title: 'Ernyka',
               theme: themeNotifier.isDark ? darkTheme : lightTheme,
